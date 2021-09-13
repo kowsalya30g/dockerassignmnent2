@@ -26,7 +26,7 @@ ADD target/employee-0.0.1-SNAPSHOT.jar employee-0.0.1-SNAPSHOT.jar
 EXPOSE 8082
 ENTRYPOINT ["java", "-jar", "employee-0.0.1-SNAPSHOT.jar"]
 ````
-### Step 3: Make change to application.properties in springboot 
+### Step 3: Make change to application.properties in springboot steps to change application properties 
 
 ````
 server: 
