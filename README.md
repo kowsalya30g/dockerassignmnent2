@@ -1,19 +1,14 @@
 DOCKER ASSINGMENT
 
 # DOCKER ASSINGMENT to dockerize a spring boot project 
-
-Before this just keep pulling the mysql image using the command 
-````
-docker pull mysql:5.7
-````
 ### Step 1: Maven install and package 
 
 Go inside the spring boot project and give commands like the below mentioned for creating a jar file 
 
 eg:
 ````
-maven clean 
-maven package -DskipTests 
+mvn clean 
+mvn package -DskipTests 
 ````
 Note: u can see the jar file built in the target classes and give that jar file name in docker file
 
