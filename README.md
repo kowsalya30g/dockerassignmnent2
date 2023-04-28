@@ -59,7 +59,7 @@ Note: mention the two image names and mention your environment respectively
 ### Step 5 : Run the docker compose file 
 
 ````
-docker-compose -f docker-compose.yml up
+docker-compose up -d
 ````
 or 
 ````
@@ -69,12 +69,12 @@ docker compose up
 
 In the output we can see that jvm started application and tomcat server started at port 8082 
 
-### Step 7 : Open the containers and run it 
+### Step 6 : Open the containers and run it 
 
 When springboot container opened in browser , 
 give as 
 ````
-http://localhost/getall
+http://localhost:8082/getall
 
 ````
 as u mentioned in ur spring controller project give that pathvariables and see the output 
