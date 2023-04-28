@@ -21,39 +21,20 @@ ADD target/employee-0.0.1-SNAPSHOT.jar employee-0.0.1-SNAPSHOT.jar
 EXPOSE 8082
 ENTRYPOINT ["java", "-jar", "employee-0.0.1-SNAPSHOT.jar"]
 ````
-### Step 3: Make change to application.properties in springboot steps to change application properties 
 
+### Step 3: Build the docker file
 ````
-server: 
-  servlet:
-    context-path: /demo
-spring.jpa.hibernate.ddl-auto=update
-spring.datasource.url=jdbc:mysql://mysql-docker:3306/demo
-spring.datasource.username=root
-spring.datasource.password=root123
-server.port=8082
-jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-        ddl-auto: update
-````
-
-Note : instead of localhost:3306 mention the docker container name 
-
-### Step 4: Build the docker file
-````
-docker build -t spring-docker .
+docker build -t springapp .
 ````
 U can give any name for ur image it will build in that name 
 
-### Step 5 : Docker compose file 
+### Step 4 : Docker compose file 
 Once two images got built now using Docker compose file we are gonna run that two image 
 Create a file docker-compose.yml
 ````
 version: '3'
 services:
-  mysql-docker:
+  mysql1
     image: 'mysql:5.7'
     environment:
       - MYSQL_ROOT_PASSWORD=root123
@@ -61,24 +42,21 @@ services:
       - MYSQL_DATABASE=demo
     ports:
       - "3307:3306"
-  springboot-docker-container:
-    image: spring-docker
+  springcontainer
+    image: springapp
     ports:
       - "8082:8082"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-docker:3306/demo?autoReconnect=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: "root"
       SPRING_DATASOURCE_PASSWORD: "root123"
-    build:
-      context: "./"
-      dockerfile: "dockerfile"
     depends_on:
-      - mysql-docker
+      - mysql1
 
 ````
 Note: mention the two image names and mention your environment respectively
 
-### Step 6 : Run the docker compose file 
+### Step 5 : Run the docker compose file 
 
 ````
 docker-compose -f docker-compose.yml up
